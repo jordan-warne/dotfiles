@@ -1,0 +1,28 @@
+#!/bin/sh
+
+## Debug
+#set -x
+
+trap 'exec $0' HUP # Restart itself 
+trap 'tput cnorm; exit 1' INT QUIT TERM
+
+esc="\033"
+reset="${esc}[00m"
+redf="${esc}[31m"
+cyanf="${esc}[36m";
+purplef="${esc}[37m"
+pipe="${purplef}|${reset}"
+
+today()
+{
+	DATE=$(date '+%a %d %b %H:%M')
+}
+
+tput civis
+
+while true; do
+	today
+	tput cup 1 0
+ 	printf "${DATE}" echo "\e[1A"
+        sleep 1
+done

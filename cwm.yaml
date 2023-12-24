@@ -1,0 +1,12 @@
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: xsession symlink
+      synchronize:
+        src: "home/.xsession"
+        dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.xsession"
+
+    - name: cwm symlink
+      synchronize:
+        src: "home/.cwmrc"
+        dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.cwmrc"

@@ -1,0 +1,44 @@
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Disable services
+      command: rcctl disable {{ item }}
+      loop:
+        - smtpd
+        - sshd
+        - ftpd
+        - ftpproxy
+        - ftpproxy6
+        - httpd
+        - ldapd
+        - nfsd
+        - slowcgi
+        - spamd
+        - apmd
+
+    - name: Enable obsdfreqd
+      command: rcctl enable obsdfreqd
+
+    - name: Enable xenodm
+      command: rcctl enable xenodm
+
+    - name: Symlink sysctl.conf
+      file:
+        src: '{{ playbook_dir }}/rc/sysctl.conf'
+        dest: '/etc/sysctl.conf'
+        state: link
+        force: true
+
+    - name: Symlink intel.conf xorg config
+      file:
+        src: '{{ playbook_dir }}/rc/intel.conf'
+        dest: '/usr/X11R6/share/X11/xorg.conf.d/intel.conf'
+        state: link
+        force: true
+        
+    - name: Symlink 10-monitor.conf xorg config
+      file:
+        src: '{{ playbook_dir }}/rc/10-monitor.conf'
+        dest: '/usr/X11R6/share/X11/xorg.conf.d/10-monitor.conf'
+        state: link
+        force: true

@@ -1,0 +1,1 @@
+doas route -T 1 exec sshfs -o idmap=user,allow_other,uid=1000,gid=1000,identityfile=~/.ssh/sshfs potato@192.168.1.21:/mnt/turing /mnt/turing

@@ -1,0 +1,35 @@
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Create .local folder
+      ansible.builtin.file:
+        path: /home/{{ lookup('env', 'DOAS_USER') }}/.local
+        state: directory
+        owner: "{{ lookup('env', 'DOAS_USER') }}"
+        group: "{{ lookup('env', 'DOAS_USER') }}"
+
+    - name: Create .local/share folder
+      ansible.builtin.file:
+        path: /home/{{ lookup('env', 'DOAS_USER') }}/.local/share
+        state: directory
+        owner: "{{ lookup('env', 'DOAS_USER') }}"
+        group: "{{ lookup('env', 'DOAS_USER') }}"
+
+    - name: Create .local/share/gnupg folder
+      ansible.builtin.file:
+        path: /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/gnupg
+        state: directory
+        owner: "{{ lookup('env', 'DOAS_USER') }}"
+        group: "{{ lookup('env', 'DOAS_USER') }}"
+
+    - name: Create .local/share/bin folder
+      ansible.builtin.file:
+        path: /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/bin
+        state: directory
+        owner: "{{ lookup('env', 'DOAS_USER') }}"
+        group: "{{ lookup('env', 'DOAS_USER') }}"
+
+    - name: Copy bin folder to home directory
+      synchronize:
+        src: '{{ playbook_dir }}/bin'
+        dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.local/"

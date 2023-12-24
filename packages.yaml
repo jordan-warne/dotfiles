@@ -1,0 +1,22 @@
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Install packages
+      command: pkg_add {{ item }}
+      loop:
+        - vim--no_x11
+        - curl
+        - wget
+        - chromium
+        - tor-browser
+        - git
+        - cmus
+        - ranger
+        - cmixer
+        - obsdfreqd
+        - unzip--
+        - rsync--
+        - dina-fonts
+        - picom
+        - profanity
+        - keepassxc

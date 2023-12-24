@@ -1,0 +1,28 @@
+#!/bin/sh
+
+## Debug
+#set -x
+
+trap 'exec $0' HUP # Restart itself 
+trap 'tput cnorm; exit 1' INT QUIT TERM
+
+esc="\033"
+reset="${esc}[00m"
+redf="${esc}[31m"
+cyanf="${esc}[36m";
+purplef="${esc}[37m"
+pipe="${purplef}|${reset}"
+
+desktop_id()
+{
+	DESKTOP_ID=$(xprop -root 32c '\t$0' _NET_CURRENT_DESKTOP | cut -f 2)
+}
+
+tput civis
+
+while true; do
+	desktop_id
+	tput cup 1 0
+	printf " ${DESKTOP_ID} "
+	sleep 1
+done
