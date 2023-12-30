@@ -7,7 +7,7 @@
         - vim--no_x11
         - curl
         - wget
-        - chromium
+        - firefox
         - tor-browser
         - git
         - cmus
@@ -19,4 +19,3 @@
         - dina-fonts
         - picom
         - profanity
-        - keepassxc
