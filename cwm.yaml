@@ -9,7 +9,7 @@
     - name: Xresources symlink
       synchronize:
         src: "home/.Xresources"
-        dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.cwmrc"
+        dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.Xresources"
 
 
     - name: cwm symlink
