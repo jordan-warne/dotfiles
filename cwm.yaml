@@ -6,6 +6,12 @@
         src: "home/.xsession"
         dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.xsession"
 
+    - name: Xresources symlink
+      synchronize:
+        src: "home/.Xresources"
+        dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.cwmrc"
+
+
     - name: cwm symlink
       synchronize:
         src: "home/.cwmrc"

@@ -1,0 +1,31 @@
+# Set your locale(1)
+export LANG=en_US.UTF-8
+
+# Set your environment (korn shell)
+export ENV=$HOME/.config/ksh/kshrc
+
+# No core dumps!
+ulimit -Sc 0
+
+# Merge our X resources
+xrdb -merge $HOME/.Xresources
+
+# Set background colour
+setroot -solid dimgrey
+
+# Make sure that bell is off!
+xset b off
+
+# Run xterm
+xterm &
+
+# Fix scaling of some X/QT programs
+xrandr --dpi 96
+
+# Automatically lock X
+xidle -delay 5 -sw -timeout 300 -program "/usr/X11R6/bin/xlock -mode qix" &
+
+# Run our window manager.
+# Can later be replaced with `exec startxfce4` if desired.
+# exec runs it in the foreground - X will exit when the cwm proc exits.
+exec cwm
