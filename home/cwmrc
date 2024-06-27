@@ -1,39 +1,38 @@
-# Set default Xft(3) font
-fontname "sans-serif:pixelsize=14:bold"
+unbind-key all
+unbind-mouse all
 
-# Turn on sticky-group mode
-sticky yes
+borderwidth 0
 
-# Any entry here is shown in the application menu
-command firefox		firefox
-command xmms		xmms
-command top		"xterm -e top"
+# System controls
+bind-key CM-Return xterm
+bind-key CM-q quit
+bind-key CM-r restart
+bind-key CM-l lock
 
-# Autogroup definitions
-autogroup 3 "aterm,XTerm"
-autogroup 3 "xterm,XTerm"
+# Launchers
+bind-key M-space menu-cmd
+bind-key M-slash menu-slash
 
-# Ignore programs by that name by not drawing borders around them.
-ignore XMMS
-ignore xwi
-ignore xapm
-ignore xclock
+gap 40 40 40 40
 
-# Key bindings
-bind-key CM-r		window-menu-label
-bind-key CS-Return	"xterm -e top"
-bind-key C4-equal	window-vmaximize
-bind-key C4S-equal	window-hmaximize
-bind-key M-1		group-only-1
-bind-key M-2		group-only-2
-bind-key M-3		group-only-3
-bind-key MS-1		window-movetogroup-1
-bind-key MS-2		window-movetogroup-2
-bind-key MS-3		window-movetogroup-3
-unbind-key 4-o
-unbind-key CM-equal
-unbind-key CMS-equal
+fontname "Hack:size=28:antialias=true"
+color font '#FFFFFF'
+color selfont '#FFFFFF'
+color menubg '#333333'
+color menufg '#666666'
 
-# Mouse bindings
-bind-mouse M-2		window-lower
-bind-mouse M-3		window-resize
+# Window controls
+bind-key M-Tab window-cycle
+bind-key MS-Tab window-rcycle
+bind-key M-m window-fullscreen
+bind-key M-q window-close
+bind-key M-h window-hide
+
+bind-mouse M-1  window-move
+bind-mouse CM-1 window-resize
+bind-mouse 3 menu-window
+bind-mouse C-1 window-raise
+
+command Xterm xterm
+
+ignore "xclock"
