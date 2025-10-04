@@ -19,8 +19,6 @@
         dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.xsession"
         state: link
         force: true
-        owner: "{{ lookup('env', 'DOAS_USER') }}"
-        group: "{{ lookup('env', 'DOAS_USER') }}"
 
     - name: Install X11 configuration files
       ansible.builtin.file:
@@ -28,8 +26,6 @@
         dest: "/home/{{ lookup('env', 'DOAS_USER') }}/{{ item.dest }}"
         state: link
         force: true
-        owner: "{{ lookup('env', 'DOAS_USER') }}"
-        group: "{{ lookup('env', 'DOAS_USER') }}"
       loop:
         - { src: "X11/Xresources", dest: ".config/X11/Xresources" }
         - { src: "cwm/cwmrc", dest: ".config/cwm/cwmrc" }

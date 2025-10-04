@@ -23,6 +23,4 @@
         dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.ssh/config"
         state: link
         force: true
-        owner: "{{ lookup('env', 'DOAS_USER') }}"
-        group: "{{ lookup('env', 'DOAS_USER') }}"
 
