@@ -22,6 +22,10 @@ xrandr --dpi 96
 # Automatically lock X
 xidle -delay 5 -sw -timeout 300 -program "/usr/X11R6/bin/xlock -mode qix" &
 
+# Launch status bar in small terminal windows
+xterm -geometry 200x30+0+0 -e "$HOME/.local/bin/date-bar" &
+xterm -geometry 100x30+200+0 -e "$HOME/.local/bin/desktop-id" &
+
 # Run our window manager.
 # Can later be replaced with `exec startxfce4` if desired.
 # exec runs it in the foreground - X will exit when the cwm proc exits.
