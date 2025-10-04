@@ -1,18 +1,21 @@
 unbind-key all
 unbind-mouse all
 
-borderwidth 0
+borderwidth 5 
+
+sticky yes
 
 # System controls
-bind-key MS-Return xterm
-bind-key MS-q quit
-bind-key MS-r restart
-bind-key MS-l lock
+bind-key M-Return xterm
+bind-key M-q quit
+bind-key M-r restart
+bind-key M-l lock
+bind-key M-v window-vtile
 
 # Launchers
 bind-key M-d menu-cmd
 
-gap 40 40 40 40
+gap 20 20 20 20
 
 fontname "Dina:size=12:antialias=true"
 color font '#FFFFFF'
@@ -23,15 +26,47 @@ color menufg '#666666'
 # Window controls
 bind-key M-Tab window-cycle
 bind-key MS-Tab window-rcycle
-bind-key M-m window-fullscreen
+bind-key M-f window-fullscreen
+bind-key M-m window-maximize
 bind-key M-q window-close
 bind-key M-h window-hide
 
 bind-mouse M-1  window-move
-bind-mouse CM-1 window-resize
+bind-mouse M-3 window-resize
 bind-mouse 3 menu-window
 bind-mouse C-1 window-raise
 
-command Xterm xterm
+command xterm xterm
+command firefox firefox
+
+bind-key M-1 group-only-1
+bind-key M-2 group-only-2
+bind-key M-3 group-only-3
+bind-key M-4 group-only-4
+bind-key M-5 group-only-5
+bind-key M-6 group-only-6
+bind-key M-7 group-only-7
+bind-key M-8 group-only-8
+bind-key M-9 group-only-9
+
+bind-key 4M-1 group-toggle-1
+bind-key 4M-2 group-toggle-2
+bind-key 4M-3 group-toggle-3
+bind-key 4M-4 group-toggle-4
+bind-key 4M-5 group-toggle-5
+bind-key 4M-6 group-toggle-6
+bind-key 4M-7 group-toggle-7
+bind-key 4M-8 group-toggle-8
+bind-key 4M-9 group-toggle-9
+
+bind-key MS-1 window-movetogroup-1
+bind-key MS-2 window-movetogroup-2
+bind-key MS-3 window-movetogroup-3
+bind-key MS-4 window-movetogroup-4
+bind-key MS-5 window-movetogroup-5
+bind-key MS-6 window-movetogroup-6
+bind-key MS-7 window-movetogroup-7
+bind-key MS-8 window-movetogroup-8
+bind-key MS-9 window-movetogroup-9
 
 ignore "xclock"
