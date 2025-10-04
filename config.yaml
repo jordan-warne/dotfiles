@@ -23,4 +23,5 @@
         dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.ssh/config"
         state: link
         force: true
+        follow: false
 

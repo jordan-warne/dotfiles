@@ -33,6 +33,7 @@
         dest: '/etc/sysctl.conf'
         state: link
         force: true
+        follow: false
 
     - name: Symlink intel.conf xorg config
       file:
@@ -40,3 +41,4 @@
         dest: '/usr/X11R6/share/X11/xorg.conf.d/intel.conf'
         state: link
         force: true
+        follow: false
