@@ -23,8 +23,8 @@ xrandr --dpi 96
 xidle -delay 5 -sw -timeout 300 -program "/usr/X11R6/bin/xlock -mode qix" &
 
 # Launch status bar in small terminal windows
-xterm -geometry 200x20+0+880 -e "$HOME/.local/bin/date-bar" &
-xterm -geometry 100x20+200+880 -e "$HOME/.local/bin/desktop-id" &
+xterm -name desktop-id -class desktop-id -e "$HOME/.local/bin/desktop-id" &
+xterm -name date-bar -class date-bar -e "$HOME/.local/bin/date-bar" &
 
 # Run our window manager with XDG-compliant config.
 # Can later be replaced with `exec startxfce4` if desired.

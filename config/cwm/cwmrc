@@ -5,11 +5,17 @@ borderwidth 1
 
 sticky yes
 
+# Make CWM ignore the status bars
+ignore desktop-id
+ignore date-bar
+autogroup 0 termbar
+autogroup 0 date-bar
+
 # System controls
 bind-key M-Return xterm
-bind-key M-q quit
-bind-key M-r restart
-bind-key M-l lock
+bind-key SM-q quit
+bind-key SM-r restart
+bind-key SM-l lock
 bind-key M-v window-vtile
 
 # Launchers
