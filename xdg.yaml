@@ -1,0 +1,64 @@
+---
+# XDG Base Directory environment setup
+- hosts: localhost
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Create XDG Base Directory structure
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ lookup('env', 'DOAS_USER') }}"
+        group: "{{ lookup('env', 'DOAS_USER') }}"
+        mode: '0755'
+        recurse: true
+      loop:
+        # XDG Base Directories
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.config
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/bin
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/applications
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/icons
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/fonts
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/themes
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/desktop-directories
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/gnupg
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/pki
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/mime
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/desktop-directories
+        # Application-specific directories
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.config/X11
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.config/cwm
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.config/ksh
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.config/gtk-2.0
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.config/gtk-3.0
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.config/ssh
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.config/git
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.config/newsboat
+
+    - name: Set up XDG environment variables
+      ansible.builtin.lineinfile:
+        path: /home/{{ lookup('env', 'DOAS_USER') }}/.config/environment
+        line: "{{ item }}"
+        create: true
+        owner: "{{ lookup('env', 'DOAS_USER') }}"
+        group: "{{ lookup('env', 'DOAS_USER') }}"
+        mode: '0644'
+      loop:
+        - 'XDG_CONFIG_HOME="$HOME/.config"'
+        - 'XDG_DATA_HOME="$HOME/.local/share"'
+        - 'XDG_CACHE_HOME="$HOME/.cache"'
+        - 'XDG_RUNTIME_DIR="/tmp/user-$UID"'
+        - 'XDG_STATE_HOME="$HOME/.local/state"'
+        - 'XDG_BIN_HOME="$HOME/.local/bin"'
+        - 'export XDG_CONFIG_HOME XDG_DATA_HOME XDG_CACHE_HOME XDG_RUNTIME_DIR XDG_STATE_HOME XDG_BIN_HOME'
+
+    - name: Add XDG bin directory to PATH
+      ansible.builtin.lineinfile:
+        path: /home/{{ lookup('env', 'DOAS_USER') }}/.config/environment
+        line: 'export PATH="$XDG_BIN_HOME:$PATH"'
+        create: true
+        owner: "{{ lookup('env', 'DOAS_USER') }}"
+        group: "{{ lookup('env', 'DOAS_USER') }}"
+        mode: '0644'

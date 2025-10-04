@@ -1,0 +1,25 @@
+---
+# Main site playbook - runs all configuration playbooks
+- name: Set up XDG Base Directory structure
+  import_playbook: xdg.yaml
+  tags: [xdg, user]
+
+- name: Install packages
+  import_playbook: packages.yaml
+  tags: [packages, system]
+
+- name: Configure system services
+  import_playbook: rc.yaml
+  tags: [rc, system]
+
+- name: Install local configuration
+  import_playbook: local.yaml
+  tags: [local, user]
+
+- name: Install window manager configuration
+  import_playbook: cwm.yaml
+  tags: [cwm, user]
+
+- name: Install user configuration
+  import_playbook: config.yaml
+  tags: [config, user]

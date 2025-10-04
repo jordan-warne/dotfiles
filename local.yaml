@@ -1,35 +1,30 @@
 - hosts: localhost
   gather_facts: false
+  become: true
   tasks:
-    - name: Create .local folder
+    - name: Create XDG Base Directory structure
       ansible.builtin.file:
-        path: /home/{{ lookup('env', 'DOAS_USER') }}/.local
+        path: "{{ item }}"
         state: directory
         owner: "{{ lookup('env', 'DOAS_USER') }}"
         group: "{{ lookup('env', 'DOAS_USER') }}"
+        mode: '0755'
+        recurse: true
+      loop:
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.config
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/gnupg
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/bin
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/applications
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/icons
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/fonts
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/themes
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/desktop-directories
 
-    - name: Create .local/share folder
-      ansible.builtin.file:
-        path: /home/{{ lookup('env', 'DOAS_USER') }}/.local/share
-        state: directory
-        owner: "{{ lookup('env', 'DOAS_USER') }}"
-        group: "{{ lookup('env', 'DOAS_USER') }}"
-
-    - name: Create .local/share/gnupg folder
-      ansible.builtin.file:
-        path: /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/gnupg
-        state: directory
-        owner: "{{ lookup('env', 'DOAS_USER') }}"
-        group: "{{ lookup('env', 'DOAS_USER') }}"
-
-    - name: Create .local/share/bin folder
-      ansible.builtin.file:
-        path: /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/bin
-        state: directory
-        owner: "{{ lookup('env', 'DOAS_USER') }}"
-        group: "{{ lookup('env', 'DOAS_USER') }}"
-
-    - name: Copy bin folder to home directory
+    - name: Copy bin folder to XDG local bin directory
       synchronize:
-        src: '{{ playbook_dir }}/bin'
-        dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.local/"
+        src: '{{ playbook_dir }}/bin/'
+        dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.local/bin/"
+        delete: true
+        recursive: true

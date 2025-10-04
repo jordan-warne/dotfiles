@@ -1,18 +1,33 @@
 - hosts: localhost
   gather_facts: false
+  become: true
   tasks:
-    - name: xsession symlink
-      synchronize:
-        src: "home/xsession"
+    - name: Create XDG directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ lookup('env', 'DOAS_USER') }}"
+        group: "{{ lookup('env', 'DOAS_USER') }}"
+        mode: '0755'
+      loop:
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.config/X11
+        - /home/{{ lookup('env', 'DOAS_USER') }}/.config/cwm
+
+    - name: Install X session file
+      ansible.builtin.file:
+        src: "{{ playbook_dir }}/config/xsession"
         dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.xsession"
+        state: link
+        owner: "{{ lookup('env', 'DOAS_USER') }}"
+        group: "{{ lookup('env', 'DOAS_USER') }}"
 
-    - name: Xresources symlink
-      synchronize:
-        src: "home/Xresources"
-        dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.Xresources"
-
-
-    - name: cwm symlink
-      synchronize:
-        src: "home/cwmrc"
-        dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.cwmrc"
+    - name: Install X11 configuration files
+      ansible.builtin.file:
+        src: "{{ playbook_dir }}/config/{{ item.src }}"
+        dest: "/home/{{ lookup('env', 'DOAS_USER') }}/{{ item.dest }}"
+        state: link
+        owner: "{{ lookup('env', 'DOAS_USER') }}"
+        group: "{{ lookup('env', 'DOAS_USER') }}"
+      loop:
+        - { src: "X11/Xresources", dest: ".config/X11/Xresources" }
+        - { src: "cwm/cwmrc", dest: ".config/cwm/cwmrc" }

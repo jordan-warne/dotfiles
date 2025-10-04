@@ -1,5 +1,6 @@
 - hosts: localhost
   gather_facts: false
+  become: true
   tasks:
     - name: Disable services
       command: rcctl disable {{ item }}
@@ -15,12 +16,16 @@
         - slowcgi
         - spamd
         - apmd
+      ignore_errors: true
+      changed_when: false
 
     - name: Enable obsdfreqd
       command: rcctl enable obsdfreqd
+      changed_when: false
 
     - name: Enable xenodm
       command: rcctl enable xenodm
+      changed_when: false
 
     - name: Symlink sysctl.conf
       file:

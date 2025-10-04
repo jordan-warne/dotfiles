@@ -8,7 +8,7 @@ export ENV=$HOME/.config/ksh/kshrc
 ulimit -Sc 0
 
 # Merge our X resources
-xrdb -merge $HOME/.Xresources
+xrdb -merge $HOME/.config/X11/Xresources
 
 # Set background colour
 setroot -solid dimgrey
@@ -26,7 +26,7 @@ xidle -delay 5 -sw -timeout 300 -program "/usr/X11R6/bin/xlock -mode qix" &
 xterm -geometry 200x30+0+0 -e "$HOME/.local/bin/date-bar" &
 xterm -geometry 100x30+200+0 -e "$HOME/.local/bin/desktop-id" &
 
-# Run our window manager.
+# Run our window manager with XDG-compliant config.
 # Can later be replaced with `exec startxfce4` if desired.
 # exec runs it in the foreground - X will exit when the cwm proc exits.
-exec cwm
+exec cwm -c $HOME/.config/cwm/cwmrc

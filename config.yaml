@@ -1,21 +1,27 @@
 - hosts: localhost
   gather_facts: false
+  become: true
   tasks:
-    
     - name: Create .config folder
       ansible.builtin.file:
         path: /home/{{ lookup('env', 'DOAS_USER') }}/.config
         state: directory
         owner: "{{ lookup('env', 'DOAS_USER') }}"
         group: "{{ lookup('env', 'DOAS_USER') }}"
+        mode: '0755'
 
     - name: Symlink .config folder
       synchronize:
         src: '{{ playbook_dir }}/config/'
         dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.config/"
-    
-    - name: Symlink .shh/config file
-      synchronize:
+        delete: true
+        recursive: true
+
+    - name: Symlink .ssh/config file
+      ansible.builtin.file:
         src: '{{ playbook_dir }}/config/ssh/config'
-        dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.ssh/config/"
+        dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.ssh/config"
+        state: link
+        owner: "{{ lookup('env', 'DOAS_USER') }}"
+        group: "{{ lookup('env', 'DOAS_USER') }}"
 
