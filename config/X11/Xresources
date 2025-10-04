@@ -35,13 +35,13 @@ xterm*scrollBar: false
 *color7                         : #EBEBEB
 *color15                        : #F8F8F8
 
-desktop-id*geometry: 179x1+8+6
+desktop-id*geometry: 3x1+22+855
 desktop-id*internalBorder: 5
 desktop-id*saveLines: 0
 desktop-id*scrollBar: false
 desktop-id*title: desktop-id
 
-date-bar*geometry: 179x1+8+6
+date-bar*geometry: 16x1+1315+855
 date-bar*internalBorder: 5
 date-bar*saveLines: 0
 date-bar*scrollBar: false

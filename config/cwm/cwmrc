@@ -8,7 +8,7 @@ sticky yes
 # Make CWM ignore the status bars
 ignore desktop-id
 ignore date-bar
-autogroup 0 termbar
+autogroup 0 desktop-id
 autogroup 0 date-bar
 
 # System controls
@@ -21,7 +21,7 @@ bind-key M-v window-vtile
 # Launchers
 bind-key M-d menu-cmd
 
-gap 20 20 20 20
+gap 20 60 20 20
 
 fontname "Dina:size=12:antialias=true"
 color font '#FFFFFF'
