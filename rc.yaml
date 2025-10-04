@@ -35,10 +35,3 @@
         dest: '/usr/X11R6/share/X11/xorg.conf.d/intel.conf'
         state: link
         force: true
-        
-    - name: Symlink 10-monitor.conf xorg config
-      file:
-        src: '{{ playbook_dir }}/rc/10-monitor.conf'
-        dest: '/usr/X11R6/share/X11/xorg.conf.d/10-monitor.conf'
-        state: link
-        force: true
