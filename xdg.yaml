@@ -26,7 +26,6 @@
         - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/gnupg
         - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/pki
         - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/mime
-        - /home/{{ lookup('env', 'DOAS_USER') }}/.local/share/desktop-directories
         # Application-specific directories
         - /home/{{ lookup('env', 'DOAS_USER') }}/.config/X11
         - /home/{{ lookup('env', 'DOAS_USER') }}/.config/cwm

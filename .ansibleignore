@@ -1,0 +1,17 @@
+# Ignore non-Ansible files
+LICENSE
+README.md
+Makefile
+.git/
+bin/
+rc/
+*.md
+*.txt
+*.log
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.dylib
+*.dll
+*.exe
