@@ -4,14 +4,13 @@ unbind-mouse all
 borderwidth 0
 
 # System controls
-bind-key CM-Return xterm
-bind-key CM-q quit
-bind-key CM-r restart
-bind-key CM-l lock
+bind-key MS-Return xterm
+bind-key MS-q quit
+bind-key MS-r restart
+bind-key MS-l lock
 
 # Launchers
-bind-key M-space menu-cmd
-bind-key M-slash menu-slash
+bind-key M-d menu-cmd
 
 gap 40 40 40 40
 
