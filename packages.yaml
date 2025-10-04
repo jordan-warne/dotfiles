@@ -8,7 +8,6 @@
         - curl
         - wget
         - firefox
-        - tor-browser
         - git
         - cmus
         - ranger
@@ -19,3 +18,4 @@
         - dina-fonts
         - picom
         - profanity
+        - newsboat
