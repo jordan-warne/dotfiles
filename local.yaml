@@ -28,3 +28,19 @@
         dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.local/bin/"
         delete: true
         recursive: true
+        rsync_opts:
+          - "--executability"
+
+    - name: Make bin files executable
+      ansible.builtin.file:
+        path: "/home/{{ lookup('env', 'DOAS_USER') }}/.local/bin/{{ item }}"
+        mode: '0755'
+        owner: "{{ lookup('env', 'DOAS_USER') }}"
+        group: "{{ lookup('env', 'DOAS_USER') }}"
+      loop:
+        - date-bar
+        - desktop-id
+        - mount-sshfs
+        - sys-stats
+        - time_date
+        - weather-get

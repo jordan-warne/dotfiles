@@ -1,7 +1,7 @@
 unbind-key all
 unbind-mouse all
 
-borderwidth 5 
+borderwidth 1
 
 sticky yes
 
