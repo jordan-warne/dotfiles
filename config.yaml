@@ -16,13 +16,11 @@
         dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.config/"
         delete: true
         recursive: true
-        force: true
 
     - name: Symlink .ssh/config file
       ansible.builtin.file:
         src: '{{ playbook_dir }}/config/ssh/config'
         dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.ssh/config"
         state: link
-        force: true
         follow: false
 
