@@ -1,0 +1,10 @@
+# Use MPV and yt-dlp to automatically
+macro o set browser "mpv --ytdl-format='best[height<=720][fps<=30]' %u"
+
+
+# Key bindings
+bind-key o macro o
+
+# Auto-download and reload
+auto-reload yes
+reload-time 30
