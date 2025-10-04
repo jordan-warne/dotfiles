@@ -11,7 +11,7 @@ ulimit -Sc 0
 xrdb -merge $HOME/.config/X11/Xresources
 
 # Set background colour
-setroot -solid dimgrey
+xsetroot -solid dimgrey
 
 # Make sure that bell is off!
 xset b off
@@ -23,7 +23,6 @@ xrandr --dpi 96
 xidle -delay 5 -sw -timeout 300 -program "/usr/X11R6/bin/xlock -mode qix" &
 
 # Launch status bar in small terminal windows
-# Positioned for 1400x900 display - bottom left
 xterm -geometry 200x20+0+880 -e "$HOME/.local/bin/date-bar" &
 xterm -geometry 100x20+200+880 -e "$HOME/.local/bin/desktop-id" &
 
