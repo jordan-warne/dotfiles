@@ -4,7 +4,7 @@ Sets up my openbsd system using ansible to automate the process.
 
 Tested on:
 
-`openbsd 7.3 -current`
+`openbsd 7.7 -current`
 
 ## Dependencies
 
@@ -24,10 +24,10 @@ Status bar:
 - none
 
 Icon theme:
-- Adwaita
+- Adwaita dark
 
 GTK theme:
-- Adwaita
+- Adwaita dark
 
 ## Run the following commands to install the certain parts of the configuration:
 
@@ -37,21 +37,21 @@ GTK theme:
 
 ###### Packages that are installed:
 
-- vim
+- vim--no_x11
 - curl
 - wget
-- chromium
-- tor-browser
+- firefox
 - git
+- cmus
 - ranger
 - cmixer
 - obsdfreqd
-- unzip
-- rsync
+- unzip--
+- rsync--
 - dina-fonts
 - picom
 - profanity
-- keepassxc
+- newsboat
 
 #### Install my .config configuration files
 
