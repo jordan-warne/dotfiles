@@ -16,9 +16,6 @@ setroot -solid dimgrey
 # Make sure that bell is off!
 xset b off
 
-# Run xterm
-xterm &
-
 # Fix scaling of some X/QT programs
 xrandr --dpi 96
 
