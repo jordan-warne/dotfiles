@@ -4,7 +4,7 @@ Sets up my openbsd system using ansible to automate the process.
 
 Tested on:
 
-`openbsd 7.3 -current`
+`openbsd 7.7 -current`
 
 ## Dependencies
 
