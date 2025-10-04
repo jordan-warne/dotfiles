@@ -16,6 +16,7 @@
         dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.config/"
         delete: true
         recursive: true
+        force: true
 
     - name: Symlink .ssh/config file
       ansible.builtin.file:
