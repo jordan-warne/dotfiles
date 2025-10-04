@@ -3,16 +3,16 @@
   tasks:
     - name: xsession symlink
       synchronize:
-        src: "home/.xsession"
+        src: "home/xsession"
         dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.xsession"
 
     - name: Xresources symlink
       synchronize:
-        src: "home/.Xresources"
+        src: "home/Xresources"
         dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.Xresources"
 
 
     - name: cwm symlink
       synchronize:
-        src: "home/.cwmrc"
+        src: "home/cwmrc"
         dest: "/home/{{ lookup('env', 'DOAS_USER') }}/.cwmrc"
